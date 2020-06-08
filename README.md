@@ -1,3 +1,8 @@
+# Assembler2i #
+
+This is an Assembler, that translates Text Based Code lines into the Binary Code used by a 2i Microcomputer.
+An CLI Emulator for a 2i Microcomputer and the Documentation for the 2i Microcomputer that this Assembler is based on can be found [here](https://github.com/klemens/2i-emulator)
+
 ## Command-Line Syntax: ##
 
 Assembler2i.exe INPUTFILEPATH [-o OUTPUTFILEPATH] [-c] [-i]
