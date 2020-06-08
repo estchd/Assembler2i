@@ -2,10 +2,10 @@
 
 Assembler2i.exe INPUTFILEPATH [-o OUTPUTFILEPATH] [-c] [-i]
 
-INPUTFILEPATH is the File that should be translated, must have .2ia File Type
-OUTPUTFILEPATH is the File Name, that should be output to, must have .2i File Type
--c specifies, that Comments and Empty Lines should be Copied to the Output File (Currently not working)
--i specifies, that Instruction should be Copied to the Output File as Comments (Currently not working)
+INPUTFILEPATH is the File that should be translated, must have .2ia File Type  
+OUTPUTFILEPATH is the File Name, that should be output to, must have .2i File Type  
+-c specifies, that Comments and Empty Lines should be Copied to the Output File (Currently not working)  
+-i specifies, that Instruction should be Copied to the Output File as Comments (Currently not working)  
 
 
 
@@ -26,16 +26,16 @@ A Code Line looks like this:
 ## ALU_FUNCTION Syntax: ##
 
 ### Single Input Commands: 
-(These Commands operate with A=B, so only one Register Address is used)
-(R is a Register Address (R0..R7))
+(These Commands operate with A=B, so only one Register Address is used)  
+(R is a Register Address (R0..R7))  
 
-Command     ALU Output      Description
+Command     ALU Output      Description  
    
-LSLH R      F = R << 1      Left Shifts the Content of R by 1, Carry Out is (Cin OR C), C is the Out-Shifted Bit
+LSLH R      F = R << 1      Left Shifts the Content of R by 1, Carry Out is (Cin OR C), C is the Out-Shifted Bit  
 LSL R       F = R << 1      Left Shifts the Content of R by 1, Carry Out is the Out-Shifted Bit  
-SL1 R       F = (R << 1)+1  Left Shifts the Content of R by 1 and In-Shifts 1, Carry Out is the negated Out-Shifted Bit (this may be wrong)
-COM R       F = NEG R       Negates the Content of R, Carry Out is 0
-RLC R       F = (R<<1)+Cin  Left shifts the Content of R by 1 and In-Shifts Cin, Carry Out is the Out-Shifted Bit
+SL1 R       F = (R << 1)+1  Left Shifts the Content of R by 1 and In-Shifts 1, Carry Out is the negated Out-Shifted Bit (this may be wrong)  
+COM R       F = NEG R       Negates the Content of R, Carry Out is 0  
+RLC R       F = (R<<1)+Cin  Left shifts the Content of R by 1 and In-Shifts Cin, Carry Out is the Out-Shifted Bit  
 
 
 ### Double Input Commands:
