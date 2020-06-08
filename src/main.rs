@@ -5,7 +5,7 @@ use std::path::Path;
 use console::style;
 use dialoguer::Confirm;
 use std::iter::FromIterator;
-use crate::parsing::{parseLine, CodeLine};
+use crate::parsing::{parse_line, CodeLine};
 
 mod instruction;
 mod parsing;
@@ -49,7 +49,7 @@ fn main() {
     let input_lines = input.lines();
     let mut code_lines = Vec::<CodeLine>::new();
     for (i,line) in input_lines.enumerate() {
-        let code_line = match parseLine(line) {
+        let code_line = match parse_line(line) {
             Ok(code_line) => {code_line},
             Err(error) => {
                 eprintln!("Error in Line {}, Description: {}", i, error);
