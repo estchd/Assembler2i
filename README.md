@@ -29,14 +29,15 @@ A Code Line looks like this:
 (These Commands operate with A=B, so only one Register Address is used)  
 (R is a Register Address (R0..R7))  
 
-Command     ALU Output      Description  
-   
-LSLH R      F = R << 1      Left Shifts the Content of R by 1, Carry Out is (Cin OR C), C is the Out-Shifted Bit  
-LSL R       F = R << 1      Left Shifts the Content of R by 1, Carry Out is the Out-Shifted Bit  
-SL1 R       F = (R << 1)+1  Left Shifts the Content of R by 1 and In-Shifts 1, Carry Out is the negated Out-Shifted Bit (this may be wrong)  
-COM R       F = NEG R       Negates the Content of R, Carry Out is 0  
-RLC R       F = (R<<1)+Cin  Left shifts the Content of R by 1 and In-Shifts Cin, Carry Out is the Out-Shifted Bit  
-
+|---------|----------------|------------------------------------------------------------------------------------------------------------------|  
+| Command |   ALU Output   | Description                                                                                                      |  
+|---------|----------------|------------------------------------------------------------------------------------------------------------------|  
+| LSLH R  | F = R << 1     | Left Shifts the Content of R by 1, Carry Out is (Cin OR C), C is the Out-Shifted Bit                             |  
+| LSL R   | F = R << 1     | Left Shifts the Content of R by 1, Carry Out is the Out-Shifted Bit                                              |  
+| SL1 R   | F = (R << 1)+1 | Left Shifts the Content of R by 1 and In-Shifts 1, Carry Out is the negated Out-Shifted Bit (this may be wrong)  |  
+| COM R   | F = NEG R      | Negates the Content of R, Carry Out is 0                                                                         |  
+| RLC R   | F = (R<<1)+Cin | Left shifts the Content of R by 1 and In-Shifts Cin, Carry Out is the Out-Shifted Bit                            |  
+|---------|----------------|------------------------------------------------------------------------------------------------------------------|  
 
 ### Double Input Commands:
 (These Commands do not operate with A=B, so both Register Addresses can be used)
