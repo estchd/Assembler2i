@@ -1,0 +1,8 @@
+Instruction Syntax:
+
+INSTRUCTION_ADDRESS: ALU_FUNCTION; WRITECMD; BUSCMD; FLAGCMD; JUMPCMD
+
+
+INSTRUCTION_ADDRESS Syntax:
+
+xxxxx       Where x is either 0 or 1

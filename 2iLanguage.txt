@@ -1,0 +1,49 @@
+ALU Functions
+
+Bits	Command		A=B	    Function		        Carry   Negative	Zero	Description
+0000	ADDH		LSLH	F=A+B			        OR	    *		    *	    add and hold carry, C=Cin OR Ca
+0001	A		    -	    F=A			            0	    *		    *	    Pass A
+0010	NOR		    COM	    F=A NOR B		        0 	    *		    *	    nor, complement when A=B
+0011	0		    -	    F=0			            0	    0		    1	    Always 0
+0100	ADD		    LSL	    F=A+B			        Ca	    *		    *	    add, logical shift left append 0 right when B=A
+0101	ADDS		SL1	    F=A+B+1			        Neg Ca	*		    *	    add for subtraction, shift left append 1 right when B=A
+0110	ADC		    RLC	    F=A+B+Cin		        Ca	    *		    *	    add with carry, rotate left through carry when B=A
+0111	ADCS		-	    F=A+B-Cin		        Neg Ca	*		    *	    add with carry for subtraction
+1000	LSR		    -	    F(n)=A(n+1),F(7)=0	    A(0)	*		    *	    Logical shift right, append 0 left
+1001	RR		    -  	    F(n)=A(n+1),F(7)=A(0)	A(0)	*		    *	    Rotate right
+1010	RRC		    -	    F(n)=A(n+1),F(7)=Cin	A(0)	*		    *	    Rotate right through carry
+1011	ASR		    -	    F(n)=A(n+1),F(7)=A(7)	A(0)	*		    *	    Arithmetic shift right
+1100	B CLC		-	    F=B			            0	    *		    *	    Pass B, clear carry Flag
+1101	B SETC		-	    F=B			            1	    *		    *	    Pass B, set carry Flag
+1110	B H		    -	    F=B			            Cin	    *		    *	    Pass B, hold carry flag
+1111	B INVC		-	    F=B			            NEG Cin	*		    *	    Pass B, invert carry flag
+
+
+Address Control
+
+MAC1	MAC0	NA0	NextAddrA4	NextAddrA3	NextAddrA2 	NextAddrA1	NextAddrA0	Description
+0	    0	    x	NA4		    NA3		    NA2		    NA1		    NA0		    Jump to next Address
+0	    1	    0	NA4		    NA3		    NA2		    NA1		    INTA		Level-Interrupt "continue"
+0	    1	    1	NA4		    NA3		    NA2		    NA1		    CF		    Jump with Carry Flag from Flag Register
+1	    0	    0	NA4		    NA3		    NA2		    NA1		    CO		    Jump with Carry Out of ALU
+1	    0	    1	NA4		    NA3		    NA2		    NA1		    ZO		    Jump with Zero Out of ALU
+1	    1	    0	NA4		    NA3		    NA2		    NA1		    NO		    Jump with Negative Out of ALU
+1	    1	    1	NA4		    NA3		    NA2		    NA1		    INTB		Edge-Interrupt "continue" or "loop"
+
+
+Instruction Format
+
+Name			Bit Count	Bit Number	Description
+
+MCHFLG			1		    0		    Copy ALU Flags into Flag Register
+MALUS3..MALUS0	4		    4..1		ALU Function
+MALUIB			1		    5		    ALU B MUX:	0=B from Register; 1=B from Constant
+MALUIA			1		    6		    ALU A MUX:	0=A from Register; 1=A from Data Bus
+MRGWE			1		    7		    Register Write Enable
+MRGWS			1		    8		    Register Write Select: 0=Write to Address A; 1=Write to Address B
+MRGAB3..MRGAB0	4		    12..9		Register Address B or B Constant
+MRGAA2..MRGAA0	3		    15..13		Register Address A
+BUSEN			1		    16		    Bus Enable
+BUSWR			1		    17		    Bus Write
+NA4..NA0		5		    22..18		Next Address
+MAC1..MAC0		2		    24..23		Address Control

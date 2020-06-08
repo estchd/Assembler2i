@@ -1,0 +1,75 @@
+Address Control
+
+Command		    Data			    Data Format	Result
+
+JMP 		    Instruction Address	xxxxx		MAC 00 with next Address
+TEST INTA JMP 	Instruction Address	xxxxI		MAC 01 with next Address and NA0 = 0
+TEST INTB JMP	Instruction Address	xxxxI		MAC 11 with next Address and NA0 = 1
+TEST CF JMP		Instruction Address	xxxxC		MAC 01 with next Address and NA0 = 1
+TEST CO	JMP	    Instruction Address	xxxxC		MAC 10 with next Address and NA0 = 0
+TEST ZO	JMP	    Instruction Address	xxxxZ		MAC 10 with next Address and NA0 = 1
+TEST NO	JMP 	Instruction Address	xxxxN		MAC 11 with next Address and NA0 = 0
+
+
+ALU Functions
+
+Command		Input		    Description
+0		    -		        Pass 0
+A		    A		        Pass A
+B		    B		        Pass B
+B SETC		B		        Pass B, Carry 1
+B H		    B		        Pass B, Hold Carry
+B INVC		B		        Pass B, Invert Carry
+COM		    Register	    Complement
+NOR		    Two Registers 	NOR
+ADDH		Two Registers	ADD, Hold Carry
+ADD		    Two Registers	ADD
+ADDS		Two Registers	ADD + 1, Invert Carry
+ADDC		    Two Registers	ADD + Carry
+ADCS		Two Registers	ADD - Carry, Invert Carry
+ASR		    A		        Arithmetic Shift Right
+LSLH		Register	    Shift Left, Append 0 Right, Hold Carry
+LSL		    Register	    Shift Left, Append 0 Right
+LSR		    A		        Shift Right, Append 0 Left
+SL1		    Register	    Shift Left, Append 1 Right
+RR		    A		        Rotate Right
+RRC		    A		        Rotate Right through carry
+RLC		    Register	    Rotate Left Through Carry
+
+
+Additional Instructions
+
+Command		Description
+WRITE A		Write to Address A
+WRITE B		Write to Address B
+WRITE		Write to Registers (for use when both addresses are the same)
+BUS WRITE	Write to Bus
+BUS READ	Read from Bus
+
+
+Instruction Syntax:
+INSTRUCTION ADDRESS: ALU FUNCTION; [WRITE INSTRUCTION]; [JMP INSTRUCTION]
+
+
+ZERO A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+PASSA A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+PASSB A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+BSETC A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+BHOLD A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+BINVC A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+COM REGISTER; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+NOR A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+ADDH A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+ADD A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+ADDS A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+ADDC A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+ADDCS A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+ASR A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+LSLH REGISTER; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+LSL REGISTER; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+LSR A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+SL1 REGISTER; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+RR A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+RRC A B; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+RLC REGISTER; WRITECMD; BUSCMD; FLAGCMD; JMPCMD J
+
