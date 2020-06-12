@@ -9,8 +9,8 @@ use std::slice::SplitN;
 use crate::parsing::RegisterOrConstant::{Register, Constant};
 
 pub struct CodeLine {
-    instruction: Instruction,
-    comment: Option<String>
+    pub instruction: Instruction,
+    pub comment: Option<String>
 }
 
 impl fmt::Display for CodeLine {
@@ -432,7 +432,7 @@ fn parse_double_alu_command(command: &str, content_a: &str, content_b: &str) -> 
         "NOR" => Ok(ALUCommand::Nor(content_a,content_b)),
         "ADDH" => Ok(ALUCommand::AddHoldC(content_a,content_b)),
         "ADD" => Ok(ALUCommand::Add(content_a,content_b)),
-        "ADDC" => Ok(ALUCommand::ADDC(content_a,content_b)),
+        "ADDC" => Ok(ALUCommand::AddC(content_a,content_b)),
         "ADDS" => Ok(ALUCommand::AddSub(content_a,content_b)),
         "ADDSC" => Ok(ALUCommand::AddSubC(content_a,content_b)),
         "ASR" => Ok(ALUCommand::ArithShiftRight(content_a,content_b)),
@@ -555,7 +555,7 @@ fn parse_jump_command(command_string: &str) -> Result<JumpCommand, String> {
     }
 
     let jump_command = split_command_string[0];
-    let mut jump_address = split_command_string[1];
+    let jump_address = split_command_string[1];
 
     let jump_type = match jump_command {
         "JUMP" => JumpType::Jump,
